@@ -3,13 +3,19 @@
         
         <slide v-for="(slide, index) in slides" :key="index">
             <div class="slider_bck" :style="{'background': `url(${slide.bck})`}">
+
                 <div class="gradient">
                     <div class="container">
                         <div class="content">
-                            <div class="item">{{slide.title}}</div>
+
+                            <!-- Button Component goes here -->
+                            <div class="item">
+                                {{slide.title}}
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </slide>
     </carousel>
