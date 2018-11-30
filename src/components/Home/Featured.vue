@@ -9,6 +9,15 @@
                         <div class="content">
 
                             <!-- Button Component goes here -->
+                            <app-button 
+                                type= "link"
+                                linkTo="#" 
+                                :addClass="['there', 'hello']" 
+                                :ovStyle="{'color': 'yellow'}"
+                            >
+                                See Review
+                            </app-button>
+
                             <div class="item">
                                 {{slide.title}}
                             </div>

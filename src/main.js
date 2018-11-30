@@ -1,9 +1,13 @@
+// Npm imports
 import Vue from 'vue'
 import App from './App.vue'
-
 import router from './routes'
 
-Vue.config.productionTip = false
+// File imports
+import Button from './components/UI/Button.vue';
+
+Vue.component('app-button', Button);
+
 
 new Vue({
   router,
