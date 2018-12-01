@@ -1,15 +1,18 @@
 <template>
     <div>
         <comp-featured/>
+        <compContent/>
     </div>
 </template>
 
 <script>
-    import compFeatured from './Featured.vue'
+    import compFeatured from './Featured.vue';
+    import compContent from './Content.vue';
 
 export default {
     components: {
-        compFeatured
+        compFeatured,
+        compContent
     }
 }
 </script>
