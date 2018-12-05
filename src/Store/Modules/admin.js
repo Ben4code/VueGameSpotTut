@@ -12,7 +12,7 @@ const admin = {
         email: null,
         token: null,
         refresh: null,
-        
+        authFailed: false
     },
     
     getters: {
@@ -24,6 +24,14 @@ const admin = {
             state.email = payload.email
             state.token = payload.idToken
             state.refresh = payload.refreshToken
+        },
+        authFailed(state, payload){ 
+            if(payload === 'reset'){
+                state.authFailed = false;
+            }else{
+                state.authFailed = true;
+            }
+            
         }
     },
 
@@ -42,7 +50,9 @@ const admin = {
                 localStorage.setItem('refreshToken', authData.refreshToken)
                 //router.push('/');
             })
-            .catch(err=> console.log(err));
+            .catch(err=> {
+                commit('authFailed')
+            });
                
         }
         

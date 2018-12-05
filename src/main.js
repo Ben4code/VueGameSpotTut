@@ -4,7 +4,11 @@ import App from './App.vue'
 import router from './routes'
 import VueResource from 'vue-resource';
 import store from './Store/store';
+import Vuelidate from 'vuelidate'
 
+
+//vuelidate Middleware
+Vue.use(Vuelidate);
 
 // File imports
 import Button from './components/UI/Button.vue';
