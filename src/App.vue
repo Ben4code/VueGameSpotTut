@@ -16,6 +16,14 @@ export default {
   components: {
     compHeader,
     compFooter
+  },
+
+  created(){
+    //Auto auth on page refresh.
+    if(localStorage.getItem('refreshToken')){
+      const refreshToken = localStorage.getItem('refreshToken');
+      this.$store.dispatch('admin/autoAuth', refreshToken );
+    }
   }
 }
 </script>
