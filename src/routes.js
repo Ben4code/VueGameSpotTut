@@ -1,3 +1,4 @@
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -11,12 +12,25 @@ Vue.use(VueRouter);
 
 const routeGuard = {
     beforeEnter (to, from, next) {
-        if(store.getters['admin/isAuth']){
-            next();
-        }else{
-            next('/');
+        const sendHome = () =>{
+            if(store.getters['admin/isAuth']){
+                next();
+            }else{
+                next('/');
+            }
         }
+        
+        //We use a store watcher to trigger the func below
+        if(store.state.admin.refreshLoading){
+            //Async Wait
+
+        }else{  
+            sendHome();
+        }
+    
     }
+
+    
 }
 
 const routes = [

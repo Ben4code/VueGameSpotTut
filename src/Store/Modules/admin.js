@@ -19,7 +19,8 @@ const admin = {
         email: null,
         token: null,
         refresh: null,
-        authFailed: false
+        authFailed: false,
+        refreshLoading: true
     },
     
     getters: {
@@ -28,6 +29,10 @@ const admin = {
                 return true;
             }
             return false;
+        },
+        refreshLoading(state){
+            //We will wait till this state property is false before using our route guard.
+            return state.refreshLoading
         }
     },
     
@@ -52,6 +57,7 @@ const admin = {
                 state.authFailed = true;
             }
         },
+
         logoutUser(state){
             //Logout is a sync process so no need for actions.
             //Wipe all data
@@ -63,6 +69,9 @@ const admin = {
             localStorage.removeItem('refreshToken');
 
             router.push('/');
+        },
+        refreshLoading(state){
+            state.refreshLoading = false;
         }
     },
 
@@ -94,6 +103,9 @@ const admin = {
                 commit('signIn', {...authData, type: 'refresh'});
                 localStorage.setItem('token', authData.id_token)
                 localStorage.setItem('refreshToken', authData.refresh_token)
+
+                //Set refresh loading to true
+                commit('refreshLoading');
             })
             .catch(err=> {
                 console.log('Error in sigin in.')
