@@ -22,10 +22,10 @@ export default {
     //Auto auth on page refresh.
     if(localStorage.getItem('refreshToken')){
       const refreshToken = localStorage.getItem('refreshToken');
-      this.$store.commit('refreshLoading');
+      this.$store.commit('admin/refreshLoading');
       this.$store.dispatch('admin/autoAuth', refreshToken );
     }else{
-      this.$store.commit('refreshLoading');
+      this.$store.commit('admin/refreshLoading');
     }
   }
 }

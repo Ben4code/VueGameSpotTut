@@ -99,12 +99,8 @@ export default {
 }
 </script>
 
-<style>
-    /* .input_field.invalid input,
-    .input_field.invalid select
-    {
-        border: 1px solid red;
-    } */
+<style scoped>
+   
     input.invalid{
         border: 1px solid red;
     }

@@ -20,7 +20,8 @@ const admin = {
         token: null,
         refresh: null,
         authFailed: false,
-        refreshLoading: true
+        refreshLoading: true, 
+        addPost: false
     },
     
     getters: {
@@ -33,6 +34,9 @@ const admin = {
         refreshLoading(state){
             //We will wait till this state property is false before using our route guard.
             return state.refreshLoading
+        }, 
+        addPost(state){
+            return state.addPost;
         }
     },
     
@@ -72,6 +76,12 @@ const admin = {
         },
         refreshLoading(state){
             state.refreshLoading = false;
+        },
+        addPost(state){
+            state.addPost = true;
+        },
+        clearAddPost(state){
+            state.addPost = false;
         }
     },
 
@@ -93,6 +103,7 @@ const admin = {
                 commit('authFailed')
             });   
         },
+
         autoAuth({commit}, payload){
             Vue.http.post(`https://securetoken.googleapis.com/v1/token?key=${apiKey}`, {
                 grant_type: "refresh_token",
@@ -110,6 +121,18 @@ const admin = {
             .catch(err=> {
                 console.log('Error in sigin in.')
             });   
+        },
+
+        addPost({commit, state}, payload){
+            Vue.http.post(`posts.json?auth=${state.token}`, payload)
+            .then( response => response.json() )
+            .then( response => {
+                commit('addPost')
+                setTimeout( ()=>{
+                    commit("clearAddPost")
+                }, 3000);
+
+            })
         }
     }
 }
