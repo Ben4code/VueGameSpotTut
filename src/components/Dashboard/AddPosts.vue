@@ -2,6 +2,16 @@
     <div class="dashboard_form">
         <h1>Add Posts</h1>
         <form @submit.prevent="submitHandler">
+            
+            <div class="input_field" >
+
+                <div class="image" v-if="imageUpload">
+                    <img :src="imageUpload" >
+                </div>
+                <input type="file" @change="processFile($event)" ref="imgInput">
+
+            </div>
+            
             <div class="input_field" >
                 <label >Title</label>
                 <input 
@@ -62,7 +72,8 @@ export default {
                 title: '',
                 desc: '',
                 content: '',
-                rating: ''
+                rating: '',
+                img: ''
             }
         }
     },
@@ -71,9 +82,16 @@ export default {
            let status  = this.$store.getters['admin/addPost'];
            if(status){
                this.clearPost();
+               this.$store.commit('admin/clearImageUpload');
            }
            return status
+       },
+       imageUpload(){
+           let imageUrl = this.$store.getters['admin/imageUpload'];
+           this.formData.img = imageUrl;
+           return imageUrl;
        }
+
    },
     validations: {
         formData: {
@@ -118,15 +136,27 @@ export default {
         clearPost(){
             //reset Vuelidate
             this.$v.$reset();
+            
+            // Clear image
+            this.$refs.imgInput.value = '';
 
             //Clear form data
             this.formData = {
                 title: '',
                 desc: '',
                 content: '',
-                rating: ''
+                rating: '',
+                img: ''
             }
+        },
+        processFile(e){
+            let payloadFile = e.target.files[0];
+            console.log(payloadFile);
+            this.$store.dispatch('admin/imageUpload', payloadFile);
         }
+    },
+    destroyed(){
+        this.$store.commit('admin/clearImageUpload');
     }
 }
 </script>
