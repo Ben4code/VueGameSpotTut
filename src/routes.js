@@ -9,6 +9,7 @@ import MainDashboard from './components/Dashboard/Main.vue';
 import AddPosts from './components/Dashboard/AddPosts.vue';
 import ListPosts from './components/Dashboard/ListPosts.vue';
 import Post from './components/Post/Post.vue'
+import NotFound from './components/404/NotFound.vue'
 
 import store from './Store/store'
 
@@ -86,7 +87,11 @@ const routes = [
         name: 'Post',
         component: Post
     },
-
+    {
+        path: '*',
+        name: 'NotFound',
+        component: NotFound
+    },
 ]
 
 export default new VueRouter({

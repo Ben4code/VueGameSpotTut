@@ -18,7 +18,7 @@ Vue.use(Vuelidate);
 import Button from './components/UI/Button.vue';
 
 //Import Vue material.
-import { MdCard, MdButton, MdDialog, MdContent } from 'vue-material/dist/components'
+import { MdCard, MdButton, MdDialog, MdContent, MdTable, MdDialogConfirm } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css' // This line here
 
@@ -28,6 +28,8 @@ Vue.use(MdCard);
 Vue.use(MdButton);
 Vue.use(MdDialog);
 Vue.use(MdContent);
+Vue.use(MdTable);
+Vue.use(MdDialogConfirm);
 
 // Custom Component
 Vue.component('app-button', Button);
