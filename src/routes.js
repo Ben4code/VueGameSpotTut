@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard/Index.vue';
 import MainDashboard from './components/Dashboard/Main.vue';
 import AddPosts from './components/Dashboard/AddPosts.vue';
 import ListPosts from './components/Dashboard/ListPosts.vue';
+import Post from './components/Post/Post.vue'
 
 import store from './Store/store'
 
@@ -79,7 +80,12 @@ const routes = [
             },
             
         ]
-    }
+    },
+    {
+        path: '/post/:id',
+        name: 'Post',
+        component: Post
+    },
 
 ]
 

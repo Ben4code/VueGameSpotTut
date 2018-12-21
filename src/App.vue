@@ -33,4 +33,10 @@ export default {
 
 <style>
   @import './assets/style.css';
+  a:visited{
+    color: #fff!important;
+  }
+  a.button_default{
+    color: #fff!important;
+  }
 </style>
